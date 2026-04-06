@@ -37,7 +37,7 @@ export interface JoiApp {
   iconColor: string;
   iconEmoji: string;
   topics: string[];
-  source: 'github' | 'manual';
+  source: 'github' | 'manual' | 'local';
   githubFullName?: string;
 }
 
@@ -52,6 +52,7 @@ export interface GitHubUser {
 export interface AppStore {
   apps: JoiApp[];
   token: string | null;
+  netlifyToken: string | null;
   user: GitHubUser | null;
   isLoading: boolean;
   error: string | null;
@@ -62,6 +63,7 @@ export interface AppStore {
   
   setToken: (token: string) => void;
   clearToken: () => void;
+  setNetlifyToken: (token: string | null) => void;
   setUser: (user: GitHubUser | null) => void;
   addApp: (app: JoiApp) => void;
   updateApp: (id: string, updates: Partial<JoiApp>) => void;

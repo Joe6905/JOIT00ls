@@ -3,6 +3,7 @@ import useStore from '../store';
 import type { TechStack, AppStatus } from '../types';
 
 interface SidebarProps {
+  onLocalDeploy: () => void;
   onImport: () => void;
 }
 
@@ -22,7 +23,7 @@ const STATUS_FILTERS: { value: AppStatus | 'all'; label: string; icon: React.Rea
   { value: 'not-deployed', label: 'Local Only', icon: <Github className="w-3.5 h-3.5" /> },
 ];
 
-export default function Sidebar({ onImport }: SidebarProps) {
+export default function Sidebar({ onImport, onLocalDeploy }: SidebarProps) {
   const {
     user, token, apps,
     searchQuery, filterTech, filterStatus,
@@ -146,6 +147,12 @@ export default function Sidebar({ onImport }: SidebarProps) {
 
       {/* Actions */}
       <div className="p-4 border-t border-white/10 space-y-2">
+        <button
+          onClick={onLocalDeploy}
+          className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-accent-cyan/15 border border-accent-cyan/30 text-accent-cyan hover:bg-accent-cyan/25 transition-all duration-150 text-sm font-display font-semibold"
+        >
+          ⚡ Auto Deploy Local
+        </button>
         <button
           onClick={onImport}
           className="btn-primary w-full flex items-center justify-center gap-2 text-sm"

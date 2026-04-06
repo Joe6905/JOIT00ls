@@ -8,6 +8,7 @@ const useStore = create<AppStore>()(
     (set, get) => ({
       apps: [],
       token: null,
+      netlifyToken: null,
       user: null,
       isLoading: false,
       error: null,
@@ -18,6 +19,7 @@ const useStore = create<AppStore>()(
 
       setToken: (token: string) => set({ token }),
       clearToken: () => set({ token: null, user: null }),
+      setNetlifyToken: (netlifyToken: string | null) => set({ netlifyToken }),
       setUser: (user: GitHubUser | null) => set({ user }),
 
       addApp: (app: JoiApp) =>
@@ -85,6 +87,7 @@ const useStore = create<AppStore>()(
       partialize: (state) => ({
         apps: state.apps,
         token: state.token,
+        netlifyToken: state.netlifyToken,
         user: state.user,
       }),
     }
